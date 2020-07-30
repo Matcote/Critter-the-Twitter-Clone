@@ -7,30 +7,36 @@ import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
 import GlobalStyle from "./GlobalStyles";
 import Sidebar from "./components/Sidebar";
+import { CurrentUserContext } from "./components/CurrentUserContext";
 
 function App() {
+  const { status } = React.useContext(CurrentUserContext);
   return (
     <Router>
       <GlobalStyle />
-      <div class="main">
+      <div className="main">
         <Sidebar />
-        <Switch>
-          <Route exact={true} path="/">
-            <HomeFeed />
-          </Route>
-          <Route path="/notifications">
-            <Notifications />
-          </Route>
-          <Route path="/bookmarks">
-            <Bookmarks />
-          </Route>
-          <Route path="/tweet/:tweetId">
-            <TweetDetails />
-          </Route>
-          <Route path="/:profileId">
-            <Profile />
-          </Route>
-        </Switch>
+        {status === "idle" ? (
+          <Switch>
+            <Route exact={true} path="/">
+              <HomeFeed />
+            </Route>
+            <Route path="/notifications">
+              <Notifications />
+            </Route>
+            <Route path="/bookmarks">
+              <Bookmarks />
+            </Route>
+            <Route path="/tweet/:tweetId">
+              <TweetDetails />
+            </Route>
+            <Route path="/:profileId">
+              <Profile />
+            </Route>
+          </Switch>
+        ) : (
+          <div>LOADING</div>
+        )}
       </div>
     </Router>
   );

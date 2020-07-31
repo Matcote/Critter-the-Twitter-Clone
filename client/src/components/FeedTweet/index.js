@@ -19,6 +19,7 @@ const Tweet = () => {
     handleLike,
     handleRetweet,
     retweetFrom,
+    picture,
   } = React.useContext(TweetContext);
   return (
     <>
@@ -35,6 +36,7 @@ const Tweet = () => {
             </Timestamp>
           </Name>
           <TweetContents>{tweetContents}</TweetContents>
+          {picture && <Image src={picture.url} alt="tweetimage" />}
           <ActionBar
             isRetweetedByCurrentUser={isRetweetedByCurrentUser}
             isLikedByCurrentUser={isLikedByCurrentUser}
@@ -56,7 +58,9 @@ const Wrapper = styled.div`
   text-align: left;
   display: flex;
 `;
-
+const Image = styled.img`
+  width: auto;
+`;
 const TweetContents = styled.div`
   padding: 8px 0;
 `;

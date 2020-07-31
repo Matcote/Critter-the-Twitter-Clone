@@ -14,6 +14,7 @@ const TweetProvider = ({
   numOfRetweets,
   children,
   retweetFrom,
+  picture,
 }) => {
   const [numOfLikes2, setNumOfLikes] = React.useState(numOfLikes);
   const [numOfRetweets2, setNumOfRetweets] = React.useState(numOfRetweets);
@@ -53,6 +54,7 @@ const TweetProvider = ({
         handleLike: handleLike,
         handleRetweet: handleRetweet,
         retweetFrom: retweetFrom,
+        picture: picture,
       }}
     >
       {children}

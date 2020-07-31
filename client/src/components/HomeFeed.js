@@ -5,7 +5,7 @@ import NewTweet from "./NewTweet";
 import TweetProvider from "./TweetContext";
 import { CurrentUserContext } from "./CurrentUserContext";
 import Spinner from "./Spinner";
-
+import { Link } from "react-router-dom";
 const HomeFeed = () => {
   const [tweets, setTweets] = React.useState(null);
   const [tweetList, setTweetList] = React.useState(null);
@@ -31,7 +31,7 @@ const HomeFeed = () => {
         tweetList.map((id, index) => {
           let tweet = tweets[id];
           return (
-            <>
+            <Link to={`/tweet/${tweet.id}`}>
               <TweetProvider
                 displayName={tweet.author.displayName}
                 username={tweet.author.handle}
@@ -43,11 +43,12 @@ const HomeFeed = () => {
                 numOfLikes={tweet.numLikes}
                 numOfRetweets={tweet.numRetweets}
                 retweetFrom={tweet.retweetFrom}
+                picture={tweet.media[0]}
               >
                 <FeedTweet key={tweet.id} />
               </TweetProvider>
               <Divider />
-            </>
+            </Link>
           );
         })
       )}

@@ -8,6 +8,7 @@ import TweetDetails from "./components/TweetDetails";
 import GlobalStyle from "./GlobalStyles";
 import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/CurrentUserContext";
+import Spinner from "./components/Spinner";
 
 function App() {
   const { status } = React.useContext(CurrentUserContext);
@@ -15,27 +16,29 @@ function App() {
     <Router>
       <GlobalStyle />
       <div className="main">
-        <Sidebar />
         {status === "idle" ? (
-          <Switch>
-            <Route exact={true} path="/">
-              <HomeFeed />
-            </Route>
-            <Route path="/notifications">
-              <Notifications />
-            </Route>
-            <Route path="/bookmarks">
-              <Bookmarks />
-            </Route>
-            <Route path="/tweet/:tweetId">
-              <TweetDetails />
-            </Route>
-            <Route path="/:profileId">
-              <Profile />
-            </Route>
-          </Switch>
+          <>
+            <Sidebar />
+            <Switch>
+              <Route exact={true} path="/">
+                <HomeFeed />
+              </Route>
+              <Route path="/notifications">
+                <Notifications />
+              </Route>
+              <Route path="/bookmarks">
+                <Bookmarks />
+              </Route>
+              <Route path="/tweet/:tweetId">
+                <TweetDetails />
+              </Route>
+              <Route path="/:profileId">
+                <Profile />
+              </Route>
+            </Switch>
+          </>
         ) : (
-          <div>LOADING</div>
+          <Spinner />
         )}
       </div>
     </Router>

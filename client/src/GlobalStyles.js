@@ -22,6 +22,7 @@ time, mark, audio, video {
     vertical-align: baseline;
     font-family: sans-serif;
     text-decoration: none;
+	box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -30,6 +31,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
+	box-sizing: border-box;
 }
 ol, ul {
 	list-style: none;
@@ -50,6 +52,7 @@ table {
 /* MINE */
 .main{
     display: flex;
+	justify-content:center;
     margin:auto;
     width: 80%;
 }

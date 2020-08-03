@@ -5,10 +5,12 @@ import NewTweet from "./NewTweet";
 import TweetProvider from "./TweetContext";
 import { CurrentUserContext } from "./CurrentUserContext";
 import Spinner from "./Spinner";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const HomeFeed = () => {
+  let history = useHistory();
   const [tweets, setTweets] = React.useState(null);
   const [tweetList, setTweetList] = React.useState(null);
+  const [update, setUpdate] = React.useState(false);
   React.useEffect(() => {
     fetch("/api/me/home-feed")
       .then((res) => res.json())
@@ -16,22 +18,27 @@ const HomeFeed = () => {
         setTweets(data.tweetsById);
         setTweetList(data.tweetIds);
       });
-  }, [tweets]);
+  }, [update]);
+  function handleClick(id) {
+    history.push(`/tweet/${id}`);
+  }
   return (
     <Wrapper>
       <header>Home</header>
       <Divider />
       <NewTweet
         currentUser={React.useContext(CurrentUserContext).currentUser}
+        setUpdate={setUpdate}
+        update={update}
       />
       <Divider style={{ height: "8px" }} />
       {tweetList === null ? (
         <Spinner />
       ) : (
-        tweetList.map((id, index) => {
+        tweetList.map((id) => {
           let tweet = tweets[id];
           return (
-            <Link to={`/tweet/${tweet.id}`}>
+            <div onClick={() => handleClick(tweet.id)} key={tweet.id}>
               <TweetProvider
                 displayName={tweet.author.displayName}
                 username={tweet.author.handle}
@@ -45,10 +52,10 @@ const HomeFeed = () => {
                 retweetFrom={tweet.retweetFrom}
                 picture={tweet.media[0]}
               >
-                <FeedTweet key={tweet.id} />
+                <FeedTweet />
               </TweetProvider>
               <Divider />
-            </Link>
+            </div>
           );
         })
       )}

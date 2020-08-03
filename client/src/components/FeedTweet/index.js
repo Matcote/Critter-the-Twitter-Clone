@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ActionBar from "./ActionBar";
 import { TweetContext } from "../TweetContext";
 import RetweetBar from "./RetweetBar";
+import { NavLink } from "react-router-dom";
 
 const Tweet = () => {
   const {
@@ -24,11 +25,19 @@ const Tweet = () => {
   return (
     <>
       {retweetFrom && <RetweetBar retweetFrom={retweetFrom} />}
-      <Wrapper>
+      <Wrapper aria-label="view tweet" tabIndex="0">
         <Avatar src={avatarSrc} />
         <div style={{ margin: "0 8px", width: "100%" }}>
           <Name>
-            <DisplayName>{displayName}</DisplayName>
+            <DisplayName
+              to={`/${username}`}
+              onClick={(event) => {
+                event.stopPropagation();
+              }}
+              tabIndex="0"
+            >
+              {displayName}
+            </DisplayName>
             <Username>@{username}</Username>
             <Timestamp>
               {" • "}
@@ -59,7 +68,10 @@ const Wrapper = styled.div`
   display: flex;
 `;
 const Image = styled.img`
-  width: auto;
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  object-fit: cover;
 `;
 const TweetContents = styled.div`
   padding: 8px 0;
@@ -81,7 +93,7 @@ const Name = styled.div`
   display: flex;
 `;
 
-const DisplayName = styled.div`
+const DisplayName = styled(NavLink)`
   font-size: 15px;
   line-height: 20px;
   font-weight: bold;

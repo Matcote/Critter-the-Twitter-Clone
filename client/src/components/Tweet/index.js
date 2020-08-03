@@ -19,6 +19,7 @@ const Tweet = () => {
     numOfRetweets,
     handleLike,
     handleRetweet,
+    picture,
   } = React.useContext(TweetContext);
   return (
     <Wrapper>
@@ -28,6 +29,7 @@ const Tweet = () => {
         avatarSrc={avatarSrc}
       />
       <TweetContents>{tweetContents}</TweetContents>
+      {picture && <Image src={picture.url} alt="tweetimage" />}
       <Timestamp>{date}</Timestamp>
       <Divider />
       <Stats>
@@ -74,5 +76,9 @@ const Stats = styled.div`
   align-items: center;
   height: 48px;
 `;
-
+const Image = styled.img`
+  width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+`;
 export default Tweet;

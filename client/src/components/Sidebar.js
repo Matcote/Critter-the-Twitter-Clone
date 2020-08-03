@@ -33,7 +33,7 @@ const NavigationLink = styled(NavLink)`
 
 const NavBar = styled.ul``;
 
-const Sidebar = () => {
+const Sidebar = ({ currentUser }) => {
   return (
     <div>
       <NavBar>
@@ -53,7 +53,7 @@ const Sidebar = () => {
             <span>Home</span>
           </li>
         </NavigationLink>
-        <NavigationLink to="/:profileId">
+        <NavigationLink to={`/${currentUser.handle}`}>
           <li>
             <FiUser style={{ height: 30, width: 30 }} />
             <span>Profile</span>

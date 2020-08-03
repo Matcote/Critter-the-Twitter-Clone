@@ -14,7 +14,6 @@ const TweetDetails = () => {
     fetch(`/api/tweet/${tweetId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setTweet(data.tweet);
       });
   }, [tweetId]);
@@ -42,7 +41,7 @@ const TweetDetails = () => {
             numOfLikes={tweet.numLikes}
             numOfRetweets={tweet.numRetweets}
             retweetFrom={tweet.retweetFrom}
-            pictureSrc={tweet.media[0].url}
+            picture={tweet.media[0]}
           >
             <Tweet key={tweet.id} />
           </TweetProvider>

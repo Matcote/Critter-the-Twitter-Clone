@@ -11,13 +11,28 @@ const ActionBar = ({
   handleRetweet,
   isRetweetedByCurrentUser,
   isLikedByCurrentUser,
+  numOfLikes,
+  numOfRetweets,
 }) => {
   return (
     <Wrapper>
-      <Action color="rgb(27, 149, 224)" size={40}>
+      <Action
+        color="rgb(27, 149, 224)"
+        size={40}
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+      >
         <TweetActionIcon kind="reply" size={24} />
       </Action>
-      <Action color="rgb(23, 191, 99)" size={40} onClick={handleRetweet}>
+      <Action
+        color="rgb(23, 191, 99)"
+        size={40}
+        onClick={(event) => {
+          event.stopPropagation();
+          handleRetweet();
+        }}
+      >
         {isRetweetedByCurrentUser ? (
           <ScaleIn>
             <TweetActionIcon
@@ -34,10 +49,33 @@ const ActionBar = ({
           />
         )}
       </Action>
-      <Action color="rgb(224, 36, 94)" size={40} onClick={handleLike}>
+      {numOfRetweets > 0 && (
+        <span style={{ position: "absolute", right: "385px" }}>
+          {numOfRetweets}
+        </span>
+      )}
+      <Action
+        color="rgb(224, 36, 94)"
+        size={40}
+        onClick={(event) => {
+          event.stopPropagation();
+          handleLike();
+        }}
+      >
         <LikeButton />
       </Action>
-      <Action color="rgb(27, 149, 224)" size={40}>
+      {numOfLikes > 0 && (
+        <span style={{ position: "absolute", right: "265px" }}>
+          {numOfLikes}
+        </span>
+      )}
+      <Action
+        color="rgb(27, 149, 224)"
+        size={40}
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+      >
         <TweetActionIcon kind="share" size={24} />
       </Action>
     </Wrapper>

@@ -11,14 +11,14 @@ import { CurrentUserContext } from "./components/CurrentUserContext";
 import Spinner from "./components/Spinner";
 
 function App() {
-  const { status } = React.useContext(CurrentUserContext);
+  const { status, currentUser } = React.useContext(CurrentUserContext);
   return (
     <Router>
       <GlobalStyle />
       <div className="main">
         {status === "idle" ? (
           <>
-            <Sidebar />
+            <Sidebar currentUser={currentUser} />
             <Switch>
               <Route exact={true} path="/">
                 <HomeFeed />

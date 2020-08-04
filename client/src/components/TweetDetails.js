@@ -42,6 +42,7 @@ const TweetDetails = () => {
             numOfRetweets={tweet.numRetweets}
             retweetFrom={tweet.retweetFrom}
             picture={tweet.media[0]}
+            id={tweet.id}
           >
             <Tweet key={tweet.id} />
           </TweetProvider>

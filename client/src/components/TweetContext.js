@@ -15,6 +15,7 @@ const TweetProvider = ({
   children,
   retweetFrom,
   picture,
+  id,
 }) => {
   const [numOfLikes2, setNumOfLikes] = React.useState(numOfLikes);
   const [numOfRetweets2, setNumOfRetweets] = React.useState(numOfRetweets);
@@ -22,21 +23,42 @@ const TweetProvider = ({
   const [isRetweeted, setIsRetweeted] = React.useState(
     isRetweetedByCurrentUser
   );
+  const fetcher = (type, id, boolean) => {
+    if (type === "like") {
+      fetch(`/api/tweet/${id}/like`, {
+        method: "PUT",
+        body: JSON.stringify({ like: boolean }),
+        headers: { "Content-Type": "application/json" },
+      });
+    } else if (type === "retweet") {
+      fetch(`/api/tweet/${id}/retweet`, {
+        method: "PUT",
+        body: JSON.stringify({ retweet: boolean }),
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+  };
 
   const handleLike = () => {
-    setIsLiked(!isLiked);
-    if (isLiked === true) {
-      setNumOfLikes(numOfLikes2 - 1);
+    if (isLikedByCurrentUser === true) {
+      fetcher("like", id, false);
+      setIsLiked(!isLiked);
+      setNumOfLikes(numOfLikes - 1);
+      console.log("unliked");
     } else {
-      setNumOfLikes(numOfLikes2 + 1);
+      fetcher("like", id, true);
+      setIsLiked(!isLiked);
+      setNumOfLikes(numOfLikes + 1);
+      console.log("liked");
     }
   };
   const handleRetweet = () => {
-    setIsRetweeted(!isRetweeted);
-    if (isRetweeted === true) {
-      setNumOfRetweets(numOfRetweets2 - 1);
+    if (isRetweetedByCurrentUser === true) {
+      console.log("unretweeted");
+      fetcher("retweet", id, false);
     } else {
-      setNumOfRetweets(numOfRetweets2 + 1);
+      console.log("retweeted");
+      fetcher("retweet", id, true);
     }
   };
   return (

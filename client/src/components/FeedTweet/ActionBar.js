@@ -5,15 +5,17 @@ import LikeButton from "../LikeButton";
 import Action from "./Action";
 import TweetActionIcon from "./TweetActionIcon";
 import ScaleIn from "../LikeButton/ScaleIn";
+import { TweetContext } from "../TweetContext";
 
-const ActionBar = ({
-  handleLike,
-  handleRetweet,
-  isRetweetedByCurrentUser,
-  isLikedByCurrentUser,
-  numOfLikes,
-  numOfRetweets,
-}) => {
+const ActionBar = () => {
+  const {
+    handleLike,
+    handleRetweet,
+    isRetweetedByCurrentUser,
+    isLikedByCurrentUser,
+    numOfLikes,
+    numOfRetweets,
+  } = React.useContext(TweetContext);
   return (
     <Wrapper>
       <Action

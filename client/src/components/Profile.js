@@ -68,6 +68,7 @@ const Profile = () => {
                     numOfRetweets={tweet.numRetweets}
                     retweetFrom={tweet.retweetFrom}
                     picture={tweet.media[0]}
+                    id={tweet.id}
                   >
                     <FeedTweet />
                   </TweetProvider>

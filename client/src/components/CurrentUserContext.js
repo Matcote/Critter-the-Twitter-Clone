@@ -12,7 +12,8 @@ const CurrentUserProvider = ({ children }) => {
       .then((data) => {
         setCurrentUser(data.profile);
         setStatus("idle");
-      });
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   return (

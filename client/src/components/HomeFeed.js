@@ -23,15 +23,12 @@ const HomeFeed = () => {
     history.push(`/tweet/${id}`);
   }
 
-  const handleTest = (ev) => {
-    console.log(ev);
+  const handleKeyPress = (ev, id) => {
+    if (ev.key === "Enter" && ev.target.toString().charAt(0) === "[") {
+      history.push(`/tweet/${id}`);
+    }
   };
-  // React.useEffect((event) => {
-  //   window.addEventListener("keydown", handleKeyDown);
-  //   return () => {
-  //     window.removeEventListener("keydown", handleKeyDown(event));
-  //   };
-  // }, []);
+
   return (
     <Wrapper>
       <header>Home</header>
@@ -48,7 +45,13 @@ const HomeFeed = () => {
         tweetList.map((id) => {
           let tweet = tweets[id];
           return (
-            <div onClick={() => handleClick(tweet.id)} key={tweet.id}>
+            <div
+              onClick={() => handleClick(tweet.id)}
+              onKeyDown={(event) => handleKeyPress(event, tweet.id)}
+              aria-label="view tweet"
+              tabIndex="0"
+              key={tweet.id}
+            >
               <TweetProvider
                 displayName={tweet.author.displayName}
                 username={tweet.author.handle}

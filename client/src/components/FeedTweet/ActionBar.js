@@ -12,7 +12,6 @@ const ActionBar = () => {
     handleLike,
     handleRetweet,
     isRetweetedByCurrentUser,
-    isLikedByCurrentUser,
     numOfLikes,
     numOfRetweets,
   } = React.useContext(TweetContext);
@@ -52,7 +51,7 @@ const ActionBar = () => {
         )}
       </Action>
       {numOfRetweets > 0 && (
-        <span style={{ position: "absolute", right: "385px" }}>
+        <span style={{ position: "absolute", right: "315px" }}>
           {numOfRetweets}
         </span>
       )}
@@ -67,7 +66,7 @@ const ActionBar = () => {
         <LikeButton />
       </Action>
       {numOfLikes > 0 && (
-        <span style={{ position: "absolute", right: "265px" }}>
+        <span style={{ position: "absolute", right: "195px" }}>
           {numOfLikes}
         </span>
       )}
@@ -85,6 +84,7 @@ const ActionBar = () => {
 };
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-around;

@@ -85,7 +85,7 @@ const Profile = () => {
 
 const Wrapper = styled.div`
   background: white;
-  width: auto;
+  width: 580px;
   text-align: left;
   border: 1px solid lightgray;
   header {

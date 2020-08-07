@@ -22,6 +22,16 @@ const HomeFeed = () => {
   function handleClick(id) {
     history.push(`/tweet/${id}`);
   }
+
+  const handleTest = (ev) => {
+    console.log(ev);
+  };
+  // React.useEffect((event) => {
+  //   window.addEventListener("keydown", handleKeyDown);
+  //   return () => {
+  //     window.removeEventListener("keydown", handleKeyDown(event));
+  //   };
+  // }, []);
   return (
     <Wrapper>
       <header>Home</header>

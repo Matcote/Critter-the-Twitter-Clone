@@ -22,10 +22,13 @@ const Tweet = () => {
     retweetFrom,
     picture,
   } = React.useContext(TweetContext);
+  const handleTest = (event) => {
+    console.log(event);
+  };
   return (
     <>
       {retweetFrom && <RetweetBar retweetFrom={retweetFrom} />}
-      <Wrapper aria-label="view tweet" tabIndex="0">
+      <Wrapper onKeyDown={handleTest} aria-label="view tweet" tabIndex="0">
         <Avatar src={avatarSrc} />
         <div style={{ margin: "0 8px", width: "100%" }}>
           <Name>

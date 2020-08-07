@@ -40,25 +40,25 @@ const TweetProvider = ({
   };
 
   const handleLike = () => {
-    if (isLikedByCurrentUser === true) {
+    if (isLiked === true) {
       fetcher("like", id, false);
       setIsLiked(!isLiked);
       setNumOfLikes(numOfLikes - 1);
-      console.log("unliked");
     } else {
       fetcher("like", id, true);
       setIsLiked(!isLiked);
       setNumOfLikes(numOfLikes + 1);
-      console.log("liked");
     }
   };
   const handleRetweet = () => {
-    if (isRetweetedByCurrentUser === true) {
-      console.log("unretweeted");
+    if (isRetweeted === true) {
       fetcher("retweet", id, false);
+      setNumOfRetweets(numOfRetweets - 1);
+      setIsRetweeted(!isRetweeted);
     } else {
-      console.log("retweeted");
       fetcher("retweet", id, true);
+      setIsRetweeted(!isRetweeted);
+      setNumOfRetweets(numOfRetweets + 1);
     }
   };
   return (

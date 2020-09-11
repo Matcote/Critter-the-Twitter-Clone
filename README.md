@@ -1,6 +1,6 @@
 # Twitter clone project
 
-This project is a replica the site Twitter, now called Critter. This was my first time using React, it was a nice little introduction to the technology. The back-end server was done using Node.js, and contacted an API given to me by my boot camp instructor, which has all the data for all the tweets and all the users.
+This project is a replica of the site Twitter, now called Critter. This was my first time using React, it was a nice little introduction to the technology. The back-end server was done using Node.js, and contacted an API given to me by my boot camp instructor, which has all the data for all the tweets and all the users.
 
 ---
 
